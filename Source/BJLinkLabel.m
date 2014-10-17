@@ -211,13 +211,13 @@
 
 - (void)setAttributedText:(NSAttributedString *)attributedText
 {
-    // Pass the text to the super class first
-    [super setAttributedText:attributedText];
-
     if (![attributedText.string isEqualToString:self.attributedText.string]) {
         self.linkRanges = nil;
     }
-    
+  
+    // Pass the text to the super class first
+    [super setAttributedText:attributedText];
+
     [self updateTextStoreWithAttributedString:attributedText];
 }
 
