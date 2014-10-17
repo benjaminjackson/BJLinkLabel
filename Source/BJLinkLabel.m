@@ -119,7 +119,7 @@
         self.linkRanges = [[NSArray alloc] init];
     }
     self.linkRanges = [self.linkRanges arrayByAddingObjectsFromArray:@[@{ @"range" : [NSValue valueWithRange:range],
-                                                                          @"link" : URL }]];
+                                                                          @"link" : [URL absoluteString] }]];
     [attributedString addAttributes:attributes range:range];
     self.attributedText = attributedString;
 }
