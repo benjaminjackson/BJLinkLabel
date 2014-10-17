@@ -172,8 +172,10 @@
     // Remove the current selection if the selection is changing
     if (self.selectedRange.length && !NSEqualRanges(self.selectedRange, range))
     {
-        [self.textStorage removeAttribute:NSBackgroundColorAttributeName
-                                    range:self.selectedRange];
+        if (self.selectedLinkBackgroundColour) {
+            [self.textStorage removeAttribute:NSBackgroundColorAttributeName
+                                        range:self.selectedRange];
+        }
         [self.textStorage addAttribute:NSForegroundColorAttributeName
                                  value:self.tintColor
                                  range:self.selectedRange];
@@ -182,12 +184,16 @@
     // Apply the new selection to the text
     if (range.length)
     {
-        [self.textStorage addAttribute:NSBackgroundColorAttributeName
-                                 value:self.selectedLinkBackgroundColour
-                                 range:range];
-        [self.textStorage addAttribute:NSForegroundColorAttributeName
-                                 value:self.selectedLinkColour
-                                 range:range];
+        if (self.selectedLinkBackgroundColour) {
+            [self.textStorage addAttribute:NSBackgroundColorAttributeName
+                                     value:self.selectedLinkBackgroundColour
+                                     range:range];
+        }
+        if (self.selectedLinkColour) {
+            [self.textStorage addAttribute:NSForegroundColorAttributeName
+                                     value:self.selectedLinkColour
+                                     range:range];
+        }
     }
     
     // Save the new range
@@ -207,6 +213,10 @@
 {
     // Pass the text to the super class first
     [super setAttributedText:attributedText];
+
+    if (![attributedText.string isEqualToString:self.attributedText.string]) {
+        self.linkRanges = nil;
+    }
     
     [self updateTextStoreWithAttributedString:attributedText];
 }
