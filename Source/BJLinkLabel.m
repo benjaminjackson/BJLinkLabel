@@ -364,12 +364,12 @@
     [super touchesEnded:touches withEvent:event];
     
     // If the user dragged their finger we ignore the touch
-    if (self.isTouchMoved)
+    /*if (self.isTouchMoved)
     {
         self.selectedRange = NSMakeRange(0, 0);
         
         return;
-    }
+    }*/
     
     // Get the info for the touched link if there is one
     NSDictionary *touchedLink;
