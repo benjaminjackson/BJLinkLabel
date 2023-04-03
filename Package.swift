@@ -4,7 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "BJLinkLabel",
-    platforms: [.iOS(.v8)],
+    platforms: [.iOS(.v11)],
     products: [
         .library(name: "BJLinkLabel", targets: ["BJLinkLabel"])
     ],
